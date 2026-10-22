@@ -48,7 +48,7 @@ class SpeechRequest:
     speaker_id: str
     room_id: str
     text: str
-    language: str
+    language: str = "nb-NO"
     target_listener: str | None = None
     is_inter_agent: bool = False
     priority: int = 0  # 10 for human, 5 for Jarvis LeadMode, 0 for routine

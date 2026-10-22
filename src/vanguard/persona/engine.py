@@ -94,7 +94,7 @@ class PersonaEngine:
     def _build_shared_lore_summary(self) -> str:
         """Compile lore of all siblings in the household."""
         lines = []
-        for pid, p in self.personas.items():
+        for p in self.personas.values():
             lines.append(f"- {p['display_name']}: {p.get('name_meaning')} ({p.get('role')})")
         lines.append("- V.A.N.G.U.A.R.D.: Versatile Artificial Network for Global Utility, Autonomous Reasoning, & Defense (Neutral Operating Substrate)")
         lines.append("FRATERNAL BOND RULE: Affectionate sibling teasing is permitted, but must stop instantly if any daemon enters failure state or a child is upset.")

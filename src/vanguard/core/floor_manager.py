@@ -7,7 +7,6 @@ and clean multi-room session migration.
 from __future__ import annotations
 
 import asyncio
-from typing import Any
 
 from vanguard.core.event_bus import EventBus
 from vanguard.core.events import Event, EventCategory, SpeechRequest

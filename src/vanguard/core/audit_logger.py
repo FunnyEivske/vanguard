@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from vanguard.core.event_bus import EventBus
-from vanguard.core.events import Event, EventCategory
+from vanguard.core.events import Event
 
 
 class AuditLogger:

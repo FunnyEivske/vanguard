@@ -6,7 +6,6 @@ Provides immediate system-wide cessation of voice dispatch, actuators, and backg
 from __future__ import annotations
 
 import logging
-from typing import Any
 
 from vanguard.core.event_bus import EventBus
 from vanguard.core.events import Event, EventCategory
