@@ -1,0 +1,16 @@
+id: "wife"
+name: "Wife"
+relationship: "Mother / Primary Operator"
+role: "family_head"
+preferred_languages:
+  - "nb-NO"
+  - "en-US"
+accent_affinity: "Norwegian"
+voice_print_id: "vp_wife_01"
+permissions:
+  full_administrative_access: true
+  lead_mode_override: true
+  door_actuation_authorization: true
+  sandbox_override: true
+primary_room: "living_room"
+confidante_persona: "friday"

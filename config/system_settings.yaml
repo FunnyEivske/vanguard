@@ -1,0 +1,47 @@
+# V.A.N.G.U.A.R.D. System Settings
+system_name: "V.A.N.G.U.A.R.D."
+system_acronym_meaning: "Versatile Artificial Network for Global Utility, Autonomous Reasoning, & Defense"
+system_common_names:
+  - "the network"
+  - "the house"
+  - "vanguard"
+
+# Inter-Agent Vocalization Roadmap
+# When false: personas communicate silently across internal agent bus.
+# When true: personas physically vocalize back-and-forth aloud in the room.
+inter_agent_speech_aloud: false
+
+# Languages Supported from Day One
+supported_languages:
+  - "en-US"
+  - "nb-NO"
+default_language: "nb-NO"
+
+# Hardware Configuration (Abstracted for future room array scale-up)
+hardware:
+  mode: "workstation_single_endpoint" # options: workstation_single_endpoint, multi_room_array
+  audio_input:
+    device_id: "default_mic"
+    sample_rate_hz: 16000
+    channels: 1
+    chunk_size_ms: 30
+  audio_output:
+    device_id: "default_speaker"
+    sample_rate_hz: 24000
+    channels: 2
+  rooms:
+    - id: "living_room"
+      name: "Stue"
+    - id: "workshop"
+      name: "Verksted"
+    - id: "kitchen"
+      name: "Kjøkken"
+    - id: "office"
+      name: "Kontor"
+
+# Safety and Governance Principles
+governance:
+  human_in_the_loop: true
+  allow_ai_override_of_human: false
+  allow_default_speaker: false
+  emergency_kill_switch_enabled: true

@@ -1,0 +1,16 @@
+id: "eivind"
+name: "Eivind"
+relationship: "Father / Primary Operator"
+role: "family_head"
+preferred_languages:
+  - "nb-NO"
+  - "en-US"
+accent_affinity: "Nordic English / Norwegian"
+voice_print_id: "vp_eivind_01"
+permissions:
+  full_administrative_access: true
+  lead_mode_override: true
+  door_actuation_authorization: true
+  sandbox_override: true
+primary_room: "office"
+confidante_persona: "friday"

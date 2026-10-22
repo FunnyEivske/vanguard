@@ -1,0 +1,14 @@
+template_id: "visitor_default"
+role: "visitor"
+preferred_languages:
+  - "nb-NO"
+  - "en-US"
+permissions:
+  full_administrative_access: false
+  lead_mode_override: false
+  door_actuation_authorization: false
+  sandbox_override: false
+  access_private_memories: false
+  access_shared_household_graph: "sanitized_public"
+greeting_persona: "jarvis"
+politeness_level: "formal"

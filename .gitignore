@@ -1,0 +1,85 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Testing & Linting
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Databases & Runtime state
+*.db
+*.sqlite
+*.sqlite3
+data/
+storage/
+logs/
+*.log
+
+# Sensitive assets & Models (Public repo safety)
+*.pt
+*.bin
+*.onnx
+*.safetensors
+*.gguf
+*.weights
+*.ckpt
+
+# Voice, Audio, Biometric & Likeness data
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.m4a
+*.pcm
+*.raw
+*.npy
+*.npz
+*.png
+*.jpg
+*.jpeg
+*.webp
+!docs/assets/*.svg
+!docs/assets/*.png
+
+# Secrets & Environment
+.env
+.env.*
+*.secret
+*.token
+*.pem
+*.key
+credentials.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

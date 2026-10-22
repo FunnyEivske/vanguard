@@ -1,0 +1,31 @@
+family_unit: "children"
+members:
+  - id: "child_elder"
+    name: "Child (Elder)"
+    role: "child"
+    preferred_languages:
+      - "nb-NO"
+      - "en-US"
+    voice_print_id: "vp_child_01"
+    permissions:
+      full_administrative_access: false
+      lead_mode_override: false
+      door_actuation_authorization: false
+      sandbox_override: false
+    content_filter: "child_friendly"
+  - id: "child_younger"
+    name: "Child (Younger)"
+    role: "child"
+    preferred_languages:
+      - "nb-NO"
+    voice_print_id: "vp_child_02"
+    permissions:
+      full_administrative_access: false
+      lead_mode_override: false
+      door_actuation_authorization: false
+      sandbox_override: false
+    content_filter: "child_friendly"
+safety_constraints:
+  require_guardian_consent_for_purchases: true
+  disable_macabre_topics: true
+  edith_theatrical_filtering: "age_appropriate"
