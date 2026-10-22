@@ -1,13 +1,14 @@
 ﻿import asyncio
 from pathlib import Path
+
 from vanguard.core.event_bus import EventBus
-from vanguard.core.floor_manager import FloorManager
-from vanguard.core.permission_router import PermissionRouter, ToolCommand
 from vanguard.core.events import SpeechRequest
+from vanguard.core.floor_manager import FloorManager
 from vanguard.memory.manager import ThreeTierMemoryManager
-from vanguard.persona.engine import PersonaEngine
 from vanguard.output.tts_dispatch import TTSDispatcher
+from vanguard.persona.engine import PersonaEngine
 from vanguard.senses.name_spotting import NameSpotter
+
 
 async def main():
     print("=" * 72)
