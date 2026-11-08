@@ -46,12 +46,15 @@ All personas know each other's full names, acronym meanings, and histories. Teas
 
 ---
 
-## 🌐 Language & Hardware Constraints
+## 🌐 Biometric Recognition, Online-First Architecture & Linux Server Constraints
 
+- **Voice & Face Biometric Recognition**: J.A.R.V.I.S., F.R.I.D.A.Y., E.D.I.T.H., D.U.M.-E, and U continuously identify different household members and visitors by **acoustic voiceprint** (`VoiceIdentifier`) and **facial recognition** (`FaceIdentifier`), fused in real time per room via `IdentityFusionEngine` and backed by `BiometricStore` (`data/biometrics.db`).
+- **Online-First with Local Backup**:
+  - **Primary (Online)**: Cloud LLM APIs (`OPENAI_API_KEY`, `GEMINI_API_KEY`, `ANTHROPIC_API_KEY`), Online Whisper STT, and ElevenLabs / OpenAI TTS.
+  - **Backup (Local on Linux Server)**: Automatic failover to local Ollama (`http://localhost:11434`), local `faster-whisper` STT, and local `piper` / `espeak-ng` TTS over Linux ALSA (`aplay`/`arecord`), PulseAudio (`paplay`/`parecord`), PipeWire (`pw-play`), and V4L2 (`/dev/video0`).
 - **Bilingual from Day One**: Native support for English (`en-US`) and Norwegian (`nb-NO`). Preferred languages are defined per person in `config/people/*.yaml`.
 - **Room Presence Rule**: An AI persona cannot be active in two physical rooms simultaneously. Sessions cleanly migrate between rooms without phantom duplicates.
-- **Hardware Abstraction**: Single microphone and audio sink for local workstation prototyping, decoupled from hardware to easily plug into distributed room arrays.
-- **Dynamic Roster**: Add new personas dynamically through YAML configuration in `config/personas/` without modifying core routing logic.
+- **Dynamic Roster**: Add new personas dynamically through YAML configuration in `config/personas/` and enroll new people via `vanguard enroll` without modifying core routing logic.
 
 ---
 
@@ -60,28 +63,52 @@ All personas know each other's full names, acronym meanings, and histories. Teas
 ```
 vanguard/
 ├── config/
-│   ├── system_settings.yaml       # Core settings, inter-agent speech toggle, hardware mappings
+│   ├── system_settings.yaml       # Core settings, online-first/local-backup routing, Linux hardware mappings
 │   ├── people/                    # Family profiles (Eivind, wife, children, visitors)
 │   └── personas/                  # Persona definitions (JARVIS, FRIDAY, EDITH, DUM-E, U)
 ├── src/
 │   └── vanguard/
+│       ├── cli.py                 # Operational CLI (`vanguard run`, `enroll`, `people`, `query`)
+│       ├── runtime.py             # Live household runtime orchestrator
 │       ├── core/                  # EventBus, FloorManager, PermissionRouter, KillSwitch, AuditLogger
-│       ├── senses/                # Streaming diarization, voice ID, name spotting, sensory buffer
-│       ├── persona/               # P.E.R.S.O.N.A. engine, drives, OCC appraisal, YAML loader
-│       ├── memory/                # 3-tier memory: private partitions, whispers, shared graph
-│       └── output/                # Persona-specific TTS dispatch, UI cards, audio cues
+│       ├── senses/                # Voice ID, Face ID, IdentityFusion, BiometricStore, Enrollment, Diarization
+│       ├── persona/               # P.E.R.S.O.N.A. engine, Online-First/Local-Backup LLMClient, drives, OCC
+│       ├── memory/                # Persistent SQLite 3-tier memory: private partitions, whispers, shared graph
+│       └── output/                # Persona-specific TTS dispatch, UI cards, Linux ALSA/Pulse audio cues
 ├── tests/                         # Comprehensive pytest test suite
-├── pyproject.toml                 # Package definition, Ruff & Pytest configuration
+├── pyproject.toml                 # Package definition, CLI scripts, Ruff & Pytest configuration
 └── README.md
 ```
 
 ---
 
-## 🚀 Quickstart
+## 🚀 Quickstart (Linux Server)
 
 ### Prerequisites
 - Python 3.10+
+- Linux audio/video utilities (`alsa-utils`, `v4l-utils`, `ffmpeg`)
 - `pip install -e .[dev]`
+
+### Enrolling People (Voice & Face Biometrics)
+```bash
+# Enroll a person from live Linux microphone & V4L2 camera
+vanguard enroll eivind --name "Eivind" --role family_head --record-mic --capture-cam
+
+# Or enroll from existing WAV and face image files
+vanguard enroll wife --name "Wife" --role family_head --voice-wav sample.wav --face-image face.jpg
+
+# List registered people and enrolled voice/face samples
+vanguard people
+```
+
+### Running the Live System
+```bash
+# Start interactive or live mic/camera household runtime
+vanguard run --room living_room --speak-aloud
+
+# Process a single query with voice/face verification
+vanguard query "Jarvis, check the perimeter sensors." --room office --speaker eivind
+```
 
 ### Running Linter and Tests
 ```bash

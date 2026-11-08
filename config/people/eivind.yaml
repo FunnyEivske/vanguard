@@ -7,6 +7,7 @@ preferred_languages:
   - "en-US"
 accent_affinity: "Nordic English / Norwegian"
 voice_print_id: "vp_eivind_01"
+face_print_id: "fp_eivind_01"
 permissions:
   full_administrative_access: true
   lead_mode_override: true

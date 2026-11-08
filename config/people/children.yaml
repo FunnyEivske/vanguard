@@ -7,6 +7,7 @@ members:
       - "nb-NO"
       - "en-US"
     voice_print_id: "vp_child_01"
+    face_print_id: "fp_child_01"
     permissions:
       full_administrative_access: false
       lead_mode_override: false
@@ -19,6 +20,7 @@ members:
     preferred_languages:
       - "nb-NO"
     voice_print_id: "vp_child_02"
+    face_print_id: "fp_child_02"
     permissions:
       full_administrative_access: false
       lead_mode_override: false

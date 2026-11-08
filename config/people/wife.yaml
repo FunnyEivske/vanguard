@@ -7,6 +7,7 @@ preferred_languages:
   - "en-US"
 accent_affinity: "Norwegian"
 voice_print_id: "vp_wife_01"
+face_print_id: "fp_wife_01"
 permissions:
   full_administrative_access: true
   lead_mode_override: true

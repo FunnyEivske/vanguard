@@ -17,18 +17,29 @@ supported_languages:
   - "nb-NO"
 default_language: "nb-NO"
 
-# Hardware Configuration (Abstracted for future room array scale-up)
+# Hardware Configuration (Linux Server + Multi-Room Array Ready)
 hardware:
+  platform: "linux_server"
   mode: "workstation_single_endpoint" # options: workstation_single_endpoint, multi_room_array
   audio_input:
-    device_id: "default_mic"
+    backend: "alsa" # options: alsa (arecord), pulse (parecord), sounddevice
+    device_id: "default"
     sample_rate_hz: 16000
     channels: 1
     chunk_size_ms: 30
   audio_output:
-    device_id: "default_speaker"
+    backend: "alsa" # options: alsa (aplay), pulse (paplay), pipewire (pw-play), ffplay
+    device_id: "default"
     sample_rate_hz: 24000
     channels: 2
+    enable_hardware_playback: false
+  video_input:
+    backend: "v4l2"
+    device_path: "/dev/video0"
+    camera_index: 0
+    width: 640
+    height: 480
+    fps: 15
   rooms:
     - id: "living_room"
       name: "Stue"
@@ -38,6 +49,58 @@ hardware:
       name: "Kjøkken"
     - id: "office"
       name: "Kontor"
+
+# Biometric Recognition Settings (Voice & Face ID)
+biometrics:
+  db_path: "data/biometrics.db"
+  voice_similarity_threshold: 0.78
+  face_similarity_threshold: 0.75
+  require_multimodal_for_high_risk: false
+  continuous_room_presence_tracking: true
+
+# AI & Audio Engine Settings (Online-First, Local as Backup)
+ai_backend:
+  routing_mode: "online_first_local_backup"
+  online_provider: "openai_compatible" # options: openai_compatible, gemini, anthropic
+  online_model: "gpt-4o"
+  gemini_model: "gemini-2.5-pro"
+  anthropic_model: "claude-sonnet-4-20250514"
+  backup_provider: "ollama"
+  ollama_url: "http://localhost:11434"
+  backup_model: "llama3.1:8b"
+  temperature: 0.6
+  stt:
+    primary: "online_whisper_api" # OpenAI /v1/audio/transcriptions or Gemini audio
+    backup: "faster_whisper_local" # Local faster-whisper / whisper on Linux server
+  tts:
+    primary: "online_tts" # ElevenLabs or OpenAI TTS API
+    backup: "piper_linux" # Local Piper neural TTS / espeak-ng on Linux server
+  persona_voices:
+    jarvis:
+      online_voice: "onyx"
+      elevenlabs_voice_id: "jarvis_rp_british"
+      piper_model: "en_GB-alan-medium"
+      espeak_voice: "en-gb"
+    friday:
+      online_voice: "nova"
+      elevenlabs_voice_id: "friday_scottish"
+      piper_model: "en_GB-alba-medium"
+      espeak_voice: "en-sc"
+    edith:
+      online_voice: "shimmer"
+      elevenlabs_voice_id: "edith_transatlantic"
+      piper_model: "en_US-amy-medium"
+      espeak_voice: "en-us"
+    dume:
+      online_voice: "echo"
+      elevenlabs_voice_id: "dume_monotone"
+      piper_model: "en_US-Ryan-low"
+      espeak_voice: "en+m1"
+    u:
+      online_voice: "alloy"
+      elevenlabs_voice_id: "u_binary_unit"
+      piper_model: "en_GB-jenny_dioco-medium"
+      espeak_voice: "en+f2"
 
 # Safety and Governance Principles
 governance:

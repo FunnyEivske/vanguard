@@ -28,13 +28,13 @@ class NameSpotter:
             re.compile(r"\b(jarvis|j\.a\.r\.v\.i\.s\.)\b", re.IGNORECASE),
         ],
         "friday": [
-            re.compile(r"\b(friday|f\.r\.i\.d\.a\.y\.)\b", re.IGNORECASE),
+            re.compile(r"\b(friday|firday|f\.r\.i\.d\.a\.y\.)\b", re.IGNORECASE),
         ],
         "edith": [
-            re.compile(r"\b(edith|e\.d\.i\.t\.h\.)\b", re.IGNORECASE),
+            re.compile(r"\b(edith|eath|e\.d\.i\.t\.h\.)\b", re.IGNORECASE),
         ],
         "dume": [
-            re.compile(r"\b(dum-?e|d\.u\.m\.-?e|dumper)\b", re.IGNORECASE),
+            re.compile(r"\b(dum-?e|d\.u\.m\.-?e|dumper|dummy)\b", re.IGNORECASE),
         ],
         "u": [
             re.compile(r"\b(unit|u)\b", re.IGNORECASE),

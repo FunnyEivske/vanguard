@@ -16,6 +16,9 @@ dependencies = [
     "pyyaml>=6.0",
 ]
 
+[project.scripts]
+vanguard = "vanguard.cli:main"
+
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0.0",
